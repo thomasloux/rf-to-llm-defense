@@ -25,7 +25,7 @@ def noise_signal(signal, noise, add_gaussian=False):
 
 
 noise_file='radio_noise.wav'
-noise=scipy.io.wavfile.read('data/'+noise_file)
+noise=scipy.io.wavfile.read('sounds/'+noise_file)
 frqcy_noise=noise[0]
 noise=noise[1].T[0]
 noise=noise/np.max(np.abs(noise))
