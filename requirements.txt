@@ -1,3 +1,5 @@
 noisereduce
 numpy
 scipy
+dotenv
+mistralai
