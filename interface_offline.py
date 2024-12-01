@@ -9,11 +9,11 @@ from mistralai import Mistral
 
 from denoise import denoise, get_speech, radio_noise
 
-
+# np.array [length] nb_seconds*freq (44000)
 def get_model():
     model_id = "openai/whisper-large-v3"
     if torch.cuda.is_available():
-        device = 0
+        device = "cuda"
     elif torch.backends.mps.is_available():
         device = "mps"
     else:
@@ -84,7 +84,7 @@ def total_pipeline(messages, audio):
     transcription = transcribe(audio)
     if len(messages) == 0:
         prompt = f"""
-You are a radio operator in the military. Your role is to transcribe and summarize messages from text. First provide a global summary of messages received (one bullet point per message).
+You are a radio operator in the military. Your role is to transcribe and summarize messages from text. You will be provided message, one message per <<>> delimiter. First provide a global summary of messages received (one bullet point per message).
  For the last communication only, you need to provide the following information if provided only, using previous messages as context.
 - Date: (Date of the message.)
 - Time: (Timestamp of the message.)
@@ -118,7 +118,7 @@ def toggle_visibility(all_summaries, isVisible):
 
 
 if __name__ == "__main__":
-    load_dotenv()
+    load_dotenv() # os.getenv("API_KEY")
 
     transcriber = get_model()
     gr.set_static_paths(paths=["assets/"])
@@ -132,8 +132,8 @@ if __name__ == "__main__":
     #     title=logo_html
     # )
     with gr.Blocks() as demo:
-        with gr.Row():  # Add a row for the logo
-            gr.Image(image_path, label="Logo")
+        # with gr.Row():  # Add a row for the logo
+        #     gr.Image(image_path, label="Logo")
         with gr.Row():  # Add the audio input and text output
             recording = gr.Audio(sources=["microphone"], label="Record Your Audio")
         with gr.Row():
