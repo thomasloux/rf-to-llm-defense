@@ -6,4 +6,5 @@ Our project for the European Defense Tech Hackathon (EDTH) for Paris' edition, D
 Here is how the program works:
 - An antenna receives the transmission from the deployed troops, and converts the analog signal to a digital signal through a converter. The digital signal is the input for our system.
 - The model is provided with a voice detection system that allows a continuous listening of the radiofrequency and processes only the voices as the wanted communication signal.
-- The digital signal then goes through a speech-to-text model that relies on a Mistral LLM, called through an API. In addition to being able of understanding the very noisy communicatiion, the model stores the communication in a text file, 
+- The digital signal then goes through a speech-to-text model that relies on a Mistral LLM, called through an API. In addition to being able of understanding the very noisy communicatiion, the model stores the communication in a text file, provides a standardized report and a synthesis.
+- Stored and newly acquired data are compiled and corelated by Mistral in order to develop a complete situational awarness from various sources.
